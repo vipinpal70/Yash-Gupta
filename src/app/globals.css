@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+:root {
+  --background: #05070c;
+  --foreground: #e8eef8;
+  --muted: #9aa6ba;
+  /* Token names kept as "emerald" for compatibility with existing component
+     classes (text-emerald, bg-emerald-dark, …) even though the brand accent
+     is now blue, not green — see README. */
+  --emerald: #5b9bff;
+  --emerald-dark: #3a6ff0;
+  --emerald-light: #9cc4ff;
+  --gold: #c9a45c;
+  --ink: #0a0e17;
+  --surface: rgba(255, 255, 255, 0.035);
+  --surface-strong: rgba(255, 255, 255, 0.07);
+  --border-soft: rgba(91, 155, 255, 0.18);
+  --border-soft-dark: rgba(91, 155, 255, 0.3);
+  --glow: rgba(91, 155, 255, 0.35);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-emerald: var(--emerald);
+  --color-emerald-dark: var(--emerald-dark);
+  --color-emerald-light: var(--emerald-light);
+  --color-gold: var(--gold);
+  --color-ink: var(--ink);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-border-soft: var(--border-soft);
+  --color-border-soft-dark: var(--border-soft-dark);
+  --color-glow: var(--glow);
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-mono-ui: var(--font-mono), ui-monospace, monospace;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes yg-shimmer {
+  to {
+    background-position: -200% center;
+  }
+}
+
+@keyframes yg-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes yg-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-60px, 40px) scale(1.12);
+  }
+}
+
+@keyframes yg-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--emerald);
+  color: var(--background);
+}
+
+:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 3px;
+}

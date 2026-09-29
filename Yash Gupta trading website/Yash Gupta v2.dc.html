@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#0A0A09;color:#EDE7DA;font-family:Manrope,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased}
+a{color:#C9A96A;text-decoration:none}
+a:hover{color:#EDE7DA}
+@keyframes yg-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#0A0A09;overflow-x:hidden">
+
+  <nav style="position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px clamp(20px,6vw,96px);background:rgba(10,10,9,.86);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,169,106,.14)">
+    <a href="#top" style="display:flex;align-items:baseline;gap:12px;color:#EDE7DA;flex-shrink:0;white-space:nowrap">
+      <span style="font-family:'Cormorant Garamond';font-weight:500;font-size:26px;letter-spacing:.02em">Yash Gupta</span>
+      <span style="font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:#C9A96A">Trader</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:36px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap">
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <a href="#mentorship" style="color:#A39D90" style-hover="color:#EDE7DA">Mentorship</a>
+        <a href="#tools" style="color:#A39D90" style-hover="color:#EDE7DA">Indicators</a>
+        <a href="#hunt" style="color:#A39D90" style-hover="color:#EDE7DA">Traders Hunt</a>
+        <a href="#about" style="color:#A39D90" style-hover="color:#EDE7DA">About</a>
+      </sc-if>
+      <a href="#contact" style="padding:12px 22px;border:1px solid #C9A96A;color:#C9A96A" style-hover="background:#C9A96A;color:#0A0A09">Enquire</a>
+    </div>
+  </nav>
+
+  <header id="top" style="position:relative;padding:clamp(72px,11vw,160px) clamp(20px,6vw,96px) clamp(72px,8vw,120px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:clamp(48px,6vw,96px);align-items:center;background:radial-gradient(ellipse 55% 60% at 80% 30%,rgba(201,169,106,.08),transparent 70%)">
+    <div style="display:flex;flex-direction:column;gap:40px">
+      <div style="display:flex;align-items:center;gap:16px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#C9A96A">
+        <span style="width:40px;height:1px;background:#C9A96A"></span>
+        Crypto &amp; Gold Trader
+      </div>
+      <h1 style="margin:0;font-family:'Cormorant Garamond';font-weight:400;font-size:clamp(56px,7.6vw,124px);line-height:.98;letter-spacing:-.015em;text-wrap:balance">
+        The quiet discipline of trading <em style="font-style:italic;color:#C9A96A">Bitcoin</em> &amp; <em style="font-style:italic;color:#C9A96A">Gold</em>.
+      </h1>
+      <p style="margin:0;max-width:480px;font-size:17px;font-weight:300;line-height:1.75;color:#A39D90;text-wrap:pretty">Private mentorship, proprietary multi-timeframe indicators and a curated community of traders — guided by Yash Gupta.</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <a href="#mentorship" style="padding:18px 32px;background:#C9A96A;color:#0A0A09;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase" style-hover="background:#EDE7DA;color:#0A0A09">Explore Mentorship</a>
+        <a href="#tools" style="padding:18px 32px;border:1px solid rgba(237,231,218,.24);color:#EDE7DA;font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase" style-hover="border-color:#C9A96A;color:#C9A96A">The Indicators</a>
+      </div>
+    </div>
+    <sc-if value="{{ showPortrait }}" hint-placeholder-val="{{ true }}">
+      <div style="position:relative;padding:14px;border:1px solid rgba(201,169,106,.28)">
+        <div style="aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#121110 0 12px,#161513 12px 24px);display:flex;align-items:center;justify-content:center">
+          <span style="font-family:'IBM Plex Mono';font-size:12px;color:#7D776C;letter-spacing:.08em">[ portrait — Yash Gupta ]</span>
+        </div>
+        <div style="position:absolute;left:-1px;bottom:40px;transform:{{ statShift }};display:flex;flex-direction:column;background:#0A0A09;border:1px solid rgba(201,169,106,.28)">
+          <div style="padding:20px 28px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid rgba(201,169,106,.18)">
+            <span style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#A39D90">BTC · six months</span>
+            <span style="font-family:'Cormorant Garamond';font-size:40px;line-height:1;color:#EDE7DA">55,000<span style="color:#C9A96A">+</span> <span style="font-size:18px;font-style:italic;color:#A39D90">points</span></span>
+          </div>
+          <div style="padding:20px 28px;display:flex;flex-direction:column;gap:6px">
+            <span style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#A39D90">Gold · six months</span>
+            <span style="font-family:'Cormorant Garamond';font-size:40px;line-height:1;color:#EDE7DA">20,000<span style="color:#C9A96A">+</span> <span style="font-size:18px;font-style:italic;color:#A39D90">points</span></span>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </header>
+
+  <sc-if value="{{ showTicker }}" hint-placeholder-val="{{ true }}">
+    <div style="border-top:1px solid rgba(201,169,106,.14);border-bottom:1px solid rgba(201,169,106,.14);overflow:hidden;padding:26px 0">{{ marquee }}</div>
+  </sc-if>
+
+  <section id="mentorship" style="padding:clamp(88px,11vw,160px) clamp(20px,6vw,96px);display:flex;flex-direction:column;gap:72px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <span style="font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#C9A96A">I — Mentorship</span>
+        <h2 style="margin:0;font-family:'Cormorant Garamond';font-weight:400;font-size:clamp(44px,5.6vw,88px);line-height:1;letter-spacing:-.01em">Four ways to learn, <em style="color:#C9A96A">one standard.</em></h2>
+      </div>
+      <p style="margin:0;max-width:420px;justify-self:end;font-size:16px;font-weight:300;line-height:1.75;color:#A39D90;text-wrap:pretty">From an immersive residential retreat to a private seat at the desk — each format is kept small by design.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));border-top:1px solid rgba(201,169,106,.22);border-left:1px solid rgba(201,169,106,.22)">
+
+      <article style="display:flex;flex-direction:column;justify-content:space-between;gap:64px;min-height:440px;padding:40px 36px;border-right:1px solid rgba(201,169,106,.22);border-bottom:1px solid rgba(201,169,106,.22);background:linear-gradient(180deg,rgba(201,169,106,.09),rgba(201,169,106,0))">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <span style="font-family:'Cormorant Garamond';font-style:italic;font-size:22px;color:#C9A96A">No. 01</span>
+          <span style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#C9A96A">Flagship</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <h3 style="margin:0;font-family:'Cormorant Garamond';font-weight:500;font-size:44px;line-height:1">Traders' Villa</h3>
+          <p style="margin:0;font-size:15px;font-weight:300;line-height:1.7;color:#A39D90;text-wrap:pretty">An immersive, stay-in retreat. Live markets by day, trade reviews by night, among a small circle of serious traders.</p>
+          <a href="#contact" style="margin-top:12px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;display:flex;align-items:center;gap:12px">Request an invitation <span style="width:28px;height:1px;background:currentColor"></span></a>
+        </div>
+      </article>
+
+      <article style="display:flex;flex-direction:column;justify-content:space-between;gap:64px;min-height:440px;padding:40px 36px;border-right:1px solid rgba(201,169,106,.22);border-bottom:1px solid rgba(201,169,106,.22)" style-hover="background:rgba(201,169,106,.04)">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <span style="font-family:'Cormorant Garamond';font-style:italic;font-size:22px;color:#C9A96A">No. 02</span>
+          <div style="display:flex;border:1px solid rgba(201,169,106,.3)">
+            <button onClick="{{ setOnline }}" style="{{ onlineBtn }}">Online</button>
+            <button onClick="{{ setOffline }}" style="{{ offlineBtn }}">Offline</button>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <h3 style="margin:0;font-family:'Cormorant Garamond';font-weight:500;font-size:44px;line-height:1">One-on-One</h3>
+          <p style="margin:0;font-size:15px;font-weight:300;line-height:1.7;color:#A39D90;text-wrap:pretty">{{ oneOnOneCopy }}</p>
+          <a href="#contact" style="margin-top:12px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;display:flex;align-items:center;gap:12px">Reserve a session <span style="width:28px;height:1px;background:currentColor"></span></a>
+        </div>
+      </article>
+
+      <article style="display:flex;flex-direction:column;justify-content:space-between;gap:64px;min-height:440px;padding:40px 36px;border-right:1px solid rgba(201,169,106,.22);border-bottom:1px solid rgba(201,169,106,.22)" style-hover="background:rgba(201,169,106,.04)">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <span style="font-family:'Cormorant Garamond';font-style:italic;font-size:22px;color:#C9A96A">No. 03</span>
+          <span style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#7D776C">Intensive</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <h3 style="margin:0;font-family:'Cormorant Garamond';font-weight:500;font-size:44px;line-height:1">Traders Marathon</h3>
+          <p style="margin:0;font-size:15px;font-weight:300;line-height:1.7;color:#A39D90;text-wrap:pretty">A sustained run of live trading sessions, built to sharpen discipline, execution and consistency.</p>
+          <a href="#contact" style="margin-top:12px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;display:flex;align-items:center;gap:12px">Join the next edition <span style="width:28px;height:1px;background:currentColor"></span></a>
+        </div>
+      </article>
+
+      <article style="display:flex;flex-direction:column;justify-content:space-between;gap:64px;min-height:440px;padding:40px 36px;border-right:1px solid rgba(201,169,106,.22);border-bottom:1px solid rgba(201,169,106,.22)" style-hover="background:rgba(201,169,106,.04)">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <span style="font-family:'Cormorant Garamond';font-style:italic;font-size:22px;color:#C9A96A">No. 04</span>
+          <span style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#7D776C">Community</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <h3 style="margin:0;font-family:'Cormorant Garamond';font-weight:500;font-size:44px;line-height:1">Traders' Circle</h3>
+          <p style="margin:0;font-size:15px;font-weight:300;line-height:1.7;color:#A39D90;text-wrap:pretty">An ongoing inner circle for market breakdowns, trade ideas and accountability alongside Yash.</p>
+          <a href="#contact" style="margin-top:12px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;display:flex;align-items:center;gap:12px">Enter the circle <span style="width:28px;height:1px;background:currentColor"></span></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="tools" style="padding:clamp(88px,11vw,160px) clamp(20px,6vw,96px);background:#EFE9DD;color:#15130F;display:flex;flex-direction:column;gap:72px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <span style="font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#7A6232">II — Trading Tools</span>
+        <h2 style="margin:0;font-family:'Cormorant Garamond';font-weight:400;font-size:clamp(44px,5.6vw,88px);line-height:1;letter-spacing:-.01em">The MTF <em style="color:#7A6232">Indicators.</em></h2>
+      </div>
+      <p style="margin:0;max-width:420px;justify-self:end;font-size:16px;font-weight:300;line-height:1.75;color:#4E4940;text-wrap:pretty">Proprietary multi-timeframe tools that align the larger trend with your entry — the same instruments Yash trades with.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:24px">
+      <article style="display:flex;flex-direction:column;gap:36px;padding:clamp(28px,3.4vw,52px);background:#0A0A09;color:#EDE7DA">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:10px;letter-spacing:.28em;text-transform:uppercase">
+          <span style="color:#C9A96A">BTC / USD</span>
+          <span style="color:#7D776C">Six-month record</span>
+        </div>
+        <div style="aspect-ratio:16/8;border:1px solid rgba(201,169,106,.2);background:repeating-linear-gradient(135deg,#121110 0 12px,#161513 12px 24px);display:flex;align-items:center;justify-content:center">
+          <span style="font-family:'IBM Plex Mono';font-size:12px;color:#7D776C">[ BTC MTF chart screenshot ]</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;padding-top:28px;border-top:1px solid rgba(201,169,106,.2)">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <h3 style="margin:0;font-family:'Cormorant Garamond';font-weight:500;font-size:38px;line-height:1">BTC MTF Indicator</h3>
+            <span style="font-size:14px;font-weight:300;color:#A39D90">Over 55,000 points captured in six months</span>
+          </div>
+          <span style="font-family:'Cormorant Garamond';font-size:clamp(60px,6vw,92px);line-height:.85;color:#C9A96A">55K<span style="font-size:.5em;vertical-align:top">+</span></span>
+        </div>
+        <a href="#contact" style="padding:18px 24px;border:1px solid #C9A96A;color:#C9A96A;font-size:12px;letter-spacing:.22em;text-transform:uppercase;text-align:center" style-hover="background:#C9A96A;color:#0A0A09">Request access</a>
+      </article>
+
+      <article style="display:flex;flex-direction:column;gap:36px;padding:clamp(28px,3.4vw,52px);background:#0A0A09;color:#EDE7DA">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:10px;letter-spacing:.28em;text-transform:uppercase">
+          <span style="color:#C9A96A">XAU / USD</span>
+          <span style="color:#7D776C">Six-month record</span>
+        </div>
+        <div style="aspect-ratio:16/8;border:1px solid rgba(201,169,106,.2);background:repeating-linear-gradient(135deg,#121110 0 12px,#161513 12px 24px);display:flex;align-items:center;justify-content:center">
+          <span style="font-family:'IBM Plex Mono';font-size:12px;color:#7D776C">[ Gold MTF chart screenshot ]</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;padding-top:28px;border-top:1px solid rgba(201,169,106,.2)">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <h3 style="margin:0;font-family:'Cormorant Garamond';font-weight:500;font-size:38px;line-height:1">Gold MTF Indicator</h3>
+            <span style="font-size:14px;font-weight:300;color:#A39D90">Over 20,000 points captured in six months</span>
+          </div>
+          <span style="font-family:'Cormorant Garamond';font-size:clamp(60px,6vw,92px);line-height:.85;color:#C9A96A">20K<span style="font-size:.5em;vertical-align:top">+</span></span>
+        </div>
+        <a href="#contact" style="padding:18px 24px;border:1px solid #C9A96A;color:#C9A96A;font-size:12px;letter-spacing:.22em;text-transform:uppercase;text-align:center" style-hover="background:#C9A96A;color:#0A0A09">Request access</a>
+      </article>
+    </div>
+    <p style="margin:0;font-size:12px;color:#6B665C;line-height:1.6">Past performance does not guarantee future results. Trading involves substantial risk of loss.</p>
+  </section>
+
+  <section id="hunt" style="padding:clamp(88px,11vw,160px) clamp(20px,6vw,96px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(48px,6vw,96px);align-items:center">
+    <div style="display:flex;flex-direction:column;gap:32px">
+      <span style="font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#C9A96A">III — Competitions</span>
+      <h2 style="margin:0;font-family:'Cormorant Garamond';font-weight:400;font-size:clamp(64px,8.5vw,140px);line-height:.92;letter-spacing:-.02em">Traders <em style="color:#C9A96A">Hunt</em></h2>
+      <p style="margin:0;max-width:460px;font-size:17px;font-weight:300;line-height:1.75;color:#A39D90;text-wrap:pretty">A competition for the community's finest. We shortlist, recognise and reward the traders who prove their edge.</p>
+      <a href="https://trader-hunt.tradecartel.in/" target="_blank" style="align-self:start;padding:18px 32px;background:#C9A96A;color:#0A0A09;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase" style-hover="background:#EDE7DA;color:#0A0A09">Enter Traders Hunt ↗</a>
+    </div>
+    <div style="display:flex;flex-direction:column;border-top:1px solid rgba(201,169,106,.22)">
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:24px;align-items:baseline;padding:32px 0;border-bottom:1px solid rgba(201,169,106,.22)">
+        <span style="font-family:'Cormorant Garamond';font-style:italic;font-size:40px;color:#C9A96A">i.</span>
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Cormorant Garamond';font-size:28px">Register</span><span style="font-size:15px;font-weight:300;color:#A39D90">Sign up on the Traders Hunt portal.</span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:24px;align-items:baseline;padding:32px 0;border-bottom:1px solid rgba(201,169,106,.22)">
+        <span style="font-family:'Cormorant Garamond';font-style:italic;font-size:40px;color:#C9A96A">ii.</span>
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Cormorant Garamond';font-size:28px">Trade &amp; be shortlisted</span><span style="font-size:15px;font-weight:300;color:#A39D90">The most consistent performers make the list.</span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:24px;align-items:baseline;padding:32px 0;border-bottom:1px solid rgba(201,169,106,.22)">
+        <span style="font-family:'Cormorant Garamond';font-style:italic;font-size:40px;color:#C9A96A">iii.</span>
+        <div style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Cormorant Garamond';font-size:28px">Be recognised</span><span style="font-size:15px;font-weight:300;color:#A39D90">Top traders are awarded before the community.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" style="padding:clamp(88px,11vw,160px) clamp(20px,6vw,96px);border-top:1px solid rgba(201,169,106,.14);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(48px,6vw,96px);align-items:center">
+    <div style="padding:14px;border:1px solid rgba(201,169,106,.28)">
+      <div style="aspect-ratio:1/1;background:repeating-linear-gradient(135deg,#121110 0 12px,#161513 12px 24px);display:flex;align-items:center;justify-content:center">
+        <span style="font-family:'IBM Plex Mono';font-size:12px;color:#7D776C">[ Yash at the trading desk ]</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <span style="font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#C9A96A">IV — About</span>
+      <h2 style="margin:0;font-family:'Cormorant Garamond';font-weight:400;font-size:clamp(44px,5.2vw,80px);line-height:1">Meet <em style="color:#C9A96A">Yash Gupta.</em></h2>
+      <p style="margin:0;font-family:'Cormorant Garamond';font-size:clamp(22px,1.9vw,28px);line-height:1.45;color:#D9D2C4;text-wrap:pretty">A full-time trader of Bitcoin and XAU/USD, Yash reads the market through multiple timeframes — and built the MTF indicators from his own process.</p>
+      <p style="margin:0;font-size:16px;font-weight:300;line-height:1.75;color:#A39D90;text-wrap:pretty">Today he mentors traders to see the market with the same clarity: clean structure, strict risk management, repeatable execution.</p>
+    </div>
+  </section>
+
+  <section id="contact" style="padding:clamp(24px,3vw,40px) clamp(20px,6vw,96px) clamp(88px,11vw,160px)">
+    <div style="padding:clamp(56px,8vw,120px) clamp(28px,5vw,80px);border:1px solid rgba(201,169,106,.32);background:radial-gradient(ellipse 60% 80% at 50% 0%,rgba(201,169,106,.1),transparent 70%);display:flex;flex-direction:column;align-items:center;text-align:center;gap:36px">
+      <span style="font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#C9A96A">By enquiry</span>
+      <h2 style="margin:0;font-family:'Cormorant Garamond';font-weight:400;font-size:clamp(48px,7vw,116px);line-height:.98;letter-spacing:-.015em;max-width:1000px;text-wrap:balance">Trade with structure, <em style="color:#C9A96A">not noise.</em></h2>
+      <p style="margin:0;max-width:480px;font-size:16px;font-weight:300;line-height:1.75;color:#A39D90;text-wrap:pretty">Reach the team to join a program, request indicator access, or reserve a place at the next Traders' Villa.</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center">
+        <a href="#" style="padding:18px 32px;background:#C9A96A;color:#0A0A09;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase" style-hover="background:#EDE7DA;color:#0A0A09">WhatsApp</a>
+        <a href="#" style="padding:18px 32px;border:1px solid rgba(237,231,218,.24);color:#EDE7DA;font-size:12px;letter-spacing:.2em;text-transform:uppercase" style-hover="border-color:#C9A96A;color:#C9A96A">Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:36px clamp(20px,6vw,96px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-size:12px;color:#7D776C;border-top:1px solid rgba(201,169,106,.14)">
+    <span style="font-family:'Cormorant Garamond';font-size:20px;color:#EDE7DA">Yash Gupta</span>
+    <span style="max-width:560px;line-height:1.6">Educational content only, not financial advice. Trading crypto and commodities carries high risk. © 2026</span>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showTicker&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;heroStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Portrait&quot;,&quot;Type only&quot;],&quot;default&quot;:&quot;Portrait&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { mode: 'online', w: window.innerWidth };
+  componentDidMount() { this.onR = () => this.setState({ w: window.innerWidth }); window.addEventListener('resize', this.onR); }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); }
+  renderVals() {
+    const w = this.state.w;
+    const on = this.state.mode === 'online';
+    const pill = active => ({ padding: '7px 12px', border: 'none', cursor: 'pointer', fontFamily: 'Manrope', fontSize: 10, letterSpacing: '.2em', textTransform: 'uppercase', background: active ? '#C9A96A' : 'transparent', color: active ? '#0A0A09' : '#A39D90' });
+    const items = ['BTC MTF — 55,000+ points', 'Gold MTF — 20,000+ points', "Traders' Villa", 'One-on-One', 'Traders Marathon', "Traders' Circle", 'Traders Hunt'];
+    const row = [...items, ...items].map((t, i) => React.createElement('span', { key: i, style: { display: 'inline-flex', alignItems: 'center', gap: 48, paddingRight: 48 } },
+      React.createElement('span', null, t),
+      React.createElement('span', { style: { width: 5, height: 5, background: '#C9A96A', transform: 'rotate(45deg)', display: 'inline-block' } })));
+    return {
+      wide: w >= 1060,
+      statShift: w >= 1100 ? 'translateX(-24%)' : 'translateX(24px)',
+      showTicker: this.props.showTicker ?? true,
+      showPortrait: (this.props.heroStyle ?? 'Portrait') === 'Portrait',
+      marquee: React.createElement('div', { style: { display: 'flex', width: 'max-content', whiteSpace: 'nowrap', animation: 'yg-marquee 70s linear infinite', fontFamily: "'Cormorant Garamond'", fontStyle: 'italic', fontSize: 30, color: '#D9D2C4' } }, row),
+      onlineBtn: pill(on), offlineBtn: pill(!on),
+      setOnline: () => this.setState({ mode: 'online' }),
+      setOffline: () => this.setState({ mode: 'offline' }),
+      oneOnOneCopy: on
+        ? 'Private live sessions over video. Your trades, your gaps, a plan shaped around you — from anywhere.'
+        : 'A seat beside Yash at the desk. Personal, in-person mentoring through live market hours.'
+    };
+  }
+}
+</script>
+</body>
+</html>
