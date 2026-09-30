@@ -3,17 +3,19 @@ import { Button } from "@/components/ui/Button";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { Reveal } from "@/components/ui/Reveal";
 import { siteConfig } from "@/data/site";
+import { ShimmerText } from "../landing/ShimmerText";
 
 export function FinalCta() {
   return (
     <section className="py-28 sm:py-32 lg:py-40">
       <Container className="flex flex-col items-center gap-10 text-center">
         <Reveal>
-          <h2 className="max-w-3xl text-4xl font-medium leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+          <h2 className="max-w-3xl font-sans text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
             Your trading journey deserves a{" "}
-            <span className="font-serif italic text-emerald">
+            <ShimmerText>better process.</ShimmerText>
+            {/* <span className="font-serif italic text-emerald">
               better process.
-            </span>
+            </span> */}
           </h2>
         </Reveal>
 
@@ -34,7 +36,7 @@ export function FinalCta() {
             </Button>
           </MagneticButton>
           <MagneticButton>
-            <Button href="/contact" variant="secondary" arrow="right">
+            <Button href="https://wa.me/919516814034" external variant="secondary" arrow="right">
               Book Mentorship
             </Button>
           </MagneticButton>

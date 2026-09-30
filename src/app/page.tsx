@@ -9,6 +9,7 @@ import { Mentorship } from "@/components/mentorship/Mentorship";
 import { FiveXTraders } from "@/components/landing/FiveXTraders";
 import { Tools } from "@/components/landing/Tools";
 import { TradersHunt } from "@/components/landing/TradersHunt";
+import { Brokers } from "@/components/landing/Brokers";
 import { AboutSection } from "@/components/about/AboutSection";
 import { ContactSection } from "@/components/contact/ContactSection";
 
@@ -22,9 +23,9 @@ export const metadata: Metadata = {
 export default function Home() {
 	return (
 		<>
-			<div className="flex flex-wrap items-center justify-center gap-3 px-5 pt-2 sm:pt-4">
+			<div className="flex w-full items-center justify-center px-5 pt-3 sm:px-10 sm:pt-6">
 				<ElefinOfferBanner />
-				<ElefinBirthdayBanner />
+				{/* <ElefinBirthdayBanner /> */}
 			</div>
 			<Hero />
 			<Marquee />

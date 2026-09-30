@@ -14,9 +14,9 @@ export function Tools() {
           <span className="text-[11px] uppercase tracking-[0.32em] text-[#1E4FD8]">
             {tools.eyebrow}
           </span>
-          <h2 className="font-serif text-[clamp(34px,4.4vw,70px)] font-extrabold leading-[1] tracking-tight">
+          <h2 className="font-sans text-[clamp(34px,4.4vw,70px)] font-extrabold leading-[1] tracking-tight">
             {tools.title[0].text}
-            <span className="text-[#1E4FD8]">{tools.title[1].text}</span>
+            <span className="text-[#1E4FD8] font-bold">{tools.title[1].text}</span>
           </h2>
         </div>
         <p className="max-w-[420px] text-pretty text-base font-light leading-[1.75] text-[#3E4757] lg:justify-self-end">
@@ -56,7 +56,9 @@ export function Tools() {
                 </ShimmerText>
               </div>
               <a
-                href="#contact"
+                href={card.href ?? "#contact"}
+                target={card.href?.startsWith("http") ? "_blank" : undefined}
+                rel={card.href?.startsWith("http") ? "noopener noreferrer" : undefined}
                 className="border border-emerald px-6 py-[18px] text-center text-[12px] uppercase tracking-[0.22em] text-emerald transition-colors hover:bg-emerald hover:text-background"
               >
                 {card.cta}

@@ -12,7 +12,7 @@ export function ContactSection() {
           <span className="text-[11px] uppercase tracking-[0.32em] text-emerald">
             {contact.eyebrow}
           </span>
-          <h2 className="text-balance font-serif text-[clamp(34px,4.5vw,72px)] font-extrabold leading-[1.02] tracking-tight">
+          <h2 className="text-balance font-sans text-[clamp(34px,4.5vw,72px)] font-extrabold leading-[1.02] tracking-tight">
             {contact.title[0].text}
             <ShimmerText>{contact.title[1].text}</ShimmerText>
           </h2>
@@ -22,12 +22,16 @@ export function ContactSection() {
           <div className="flex flex-wrap gap-4">
             <a
               href={contact.whatsapp.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-emerald px-8 py-[18px] text-[12px] font-semibold uppercase tracking-[0.2em] text-background transition-colors hover:bg-foreground"
             >
               {contact.whatsapp.label}
             </a>
             <a
               href={contact.instagram.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="border border-foreground/24 px-8 py-[18px] text-[12px] uppercase tracking-[0.2em] text-foreground transition-colors hover:border-emerald hover:text-emerald"
             >
               {contact.instagram.label}

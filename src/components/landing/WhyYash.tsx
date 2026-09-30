@@ -10,7 +10,7 @@ export function WhyYash() {
           <span className="text-[11px] uppercase tracking-[0.32em] text-emerald">
             {whyYash.eyebrow}
           </span>
-          <h2 className="font-serif text-[clamp(32px,4vw,62px)] font-extrabold leading-[1.02] tracking-tight">
+          <h2 className="font-sans text-[clamp(32px,4vw,62px)] font-extrabold leading-[1.02] tracking-tight">
             {whyYash.title.map((part, i) =>
               part.shimmer ? (
                 <ShimmerText key={i}>{part.text}</ShimmerText>

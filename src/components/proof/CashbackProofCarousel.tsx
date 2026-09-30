@@ -25,7 +25,7 @@ export function CashbackProofCarousel() {
           <span className="text-[11px] uppercase tracking-[0.32em] text-emerald">
             {cashbackProof.eyebrow}
           </span>
-          <h2 className="text-balance font-serif text-[clamp(30px,3.8vw,58px)] font-extrabold leading-[1.05] tracking-tight">
+          <h2 className="text-balance font-sans text-[clamp(30px,3.8vw,58px)] font-extrabold leading-[1.05] tracking-tight">
             Real cashback, sent to{" "}
             <ShimmerText>real members.</ShimmerText>
           </h2>

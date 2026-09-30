@@ -18,7 +18,7 @@ export function Mentorship() {
 					<span className="text-[11px] uppercase tracking-[0.32em] text-emerald">
 						{mentorship.eyebrow}
 					</span>
-					<h2 className="font-serif text-[clamp(34px,4.4vw,70px)] font-extrabold leading-[1] tracking-tight">
+					<h2 className="font-sans text-[clamp(34px,4.4vw,70px)] font-extrabold leading-[1] tracking-tight">
 						{mentorship.title.map((part, i) => (
 							<span key={i} className={part.plain ? "text-emerald" : ""}>
 								{part.text}
@@ -96,10 +96,6 @@ export function Mentorship() {
 				</RevealItem>
 
 				<RevealItem>
-					<OneOnOneCard />
-				</RevealItem>
-
-				<RevealItem>
 					<article className="flex min-h-[440px] flex-col justify-between gap-16 border border-emerald/50 bg-[linear-gradient(160deg,rgba(91,155,255,0.22),rgba(91,155,255,0.03)_60%)] p-9 transition-all duration-500 ease-[cubic-bezier(.2,.7,.2,1)] hover:-translate-y-2 hover:border-emerald hover:shadow-[0_30px_80px_-30px_rgba(91,155,255,0.5)]">
 						<div className="flex items-center justify-between gap-3">
 							<span className="font-serif text-xl font-bold text-emerald">
@@ -118,6 +114,8 @@ export function Mentorship() {
 							</p>
 							<a
 								href={villa.href}
+								target="_blank"
+								rel="noopener noreferrer"
 								className="mt-3 flex items-center gap-3 text-[11px] uppercase tracking-[0.24em]"
 							>
 								{villa.cta}
@@ -125,6 +123,10 @@ export function Mentorship() {
 							</a>
 						</div>
 					</article>
+				</RevealItem>
+
+				<RevealItem>
+					<OneOnOneCard />
 				</RevealItem>
 			</RevealGroup>
 		</section>

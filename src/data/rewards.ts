@@ -1,7 +1,7 @@
 export const rewardsPage = {
   eyebrow: "Rewards",
   title: [
-    { text: "A little more back for " },
+    { text: "A little gift for " },
     { text: "trading well.", shimmer: true },
   ],
   description:

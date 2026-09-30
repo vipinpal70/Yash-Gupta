@@ -24,11 +24,11 @@ export function AboutSection() {
         <span className="text-[11px] uppercase tracking-[0.32em] text-emerald">
           {about.eyebrow}
         </span>
-        <h2 className="font-serif text-[clamp(34px,4.1vw,62px)] font-extrabold leading-none">
+        <h2 className="font-sans text-[clamp(34px,4.1vw,62px)] font-extrabold leading-none">
           {about.title[0].text}
           <span className="text-emerald">{about.title[1].text}</span>
         </h2>
-        <p className="text-pretty font-serif text-[clamp(22px,1.9vw,28px)] font-bold leading-[1.45] text-[#CCD6E6]">
+        <p className="text-pretty text-base font-medium leading-[1.75] text-[#CCD6E6]">
           {about.lead}
         </p>
         <p className="text-pretty text-base font-light leading-[1.75] text-muted">

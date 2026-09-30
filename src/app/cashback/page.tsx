@@ -4,6 +4,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { CashbackSection } from "@/components/rewards/CashbackSection";
 import { CashbackProofCarousel } from "@/components/proof/CashbackProofCarousel";
 import { CompetitionSection } from "@/components/rewards/CompetitionSection";
+import { Brokers } from "@/components/landing/Brokers";
 import { rewardsPage } from "@/data/rewards";
 
 export const metadata: Metadata = {
@@ -25,12 +26,12 @@ export default function RewardsPage() {
             <span className="h-px w-10 bg-emerald" />
             {rewardsPage.eyebrow}
           </span>
-          <h1 className="text-balance font-serif text-[clamp(34px,4.5vw,72px)] font-extrabold leading-[1.02] tracking-tight">
+          <h1 className="text-balance font-sans text-[clamp(34px,4.5vw,72px)] font-extrabold leading-[1.02] tracking-tight">
             {rewardsPage.title.map((part, i) =>
               part.shimmer ? (
                 <ShimmerText key={i}>{part.text}</ShimmerText>
               ) : (
-                <span key={i}>{part.text}</span>
+                <span key={i}>{part.text} <br /></span>
               ),
             )}
           </h1>
@@ -39,9 +40,10 @@ export default function RewardsPage() {
           </p>
         </Reveal>
       </header>
-      <CashbackSection />
+      <Brokers />
+      {/* <CashbackSection /> */}
       <CashbackProofCarousel />
-      <CompetitionSection />
+      {/* <CompetitionSection /> */}
     </>
   );
 }

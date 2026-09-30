@@ -51,6 +51,8 @@ export function OneOnOneCard() {
         </p>
         <a
           href={oneOnOne.href}
+          target="_blank"
+          rel="noopener noreferrer"
           className="mt-3 flex items-center gap-3 text-[11px] uppercase tracking-[0.24em]"
         >
           {oneOnOne.cta}

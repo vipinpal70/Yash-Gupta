@@ -12,7 +12,7 @@ export function TradersHunt() {
         <span className="text-[11px] uppercase tracking-[0.32em] text-emerald">
           {tradersHunt.eyebrow}
         </span>
-        <h2 className="font-serif text-[clamp(44px,5.8vw,94px)] font-extrabold leading-[0.95] tracking-tight">
+        <h2 className="font-sans text-[clamp(44px,5.8vw,94px)] font-extrabold leading-[0.95] tracking-tight">
           {tradersHunt.title[0].text}
           <ShimmerText>{tradersHunt.title[1].text}</ShimmerText>
         </h2>

@@ -22,7 +22,7 @@ export function FiveXTraders() {
                   {fiveXTraders.badge}
                 </span>
               </div>
-              <h2 className="font-serif text-[clamp(44px,5.5vw,88px)] font-extrabold leading-[1] tracking-tight">
+              <h2 className="font-sans text-[clamp(44px,5.5vw,88px)] font-extrabold leading-[1] tracking-tight">
                 <ShimmerText>{fiveXTraders.title[0].text}</ShimmerText>
                 {fiveXTraders.title[1].text}
               </h2>
@@ -32,6 +32,8 @@ export function FiveXTraders() {
               <div className="flex flex-wrap gap-4">
                 <a
                   href={fiveXTraders.cta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-fit bg-emerald px-8 py-[18px] text-[12px] font-semibold uppercase tracking-[0.2em] text-background transition-colors hover:bg-foreground"
                 >
                   {fiveXTraders.cta.label}

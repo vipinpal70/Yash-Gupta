@@ -21,14 +21,13 @@ export default function ElefinOfferPage() {
         >
           <span className="flex items-center gap-4 text-[11px] uppercase tracking-[0.32em] text-emerald">
             <span className="h-px w-10 bg-emerald" />
-            {elefinOffer.eyebrow} · {elefinOffer.window.display}
+            {elefinOffer.heading} · {elefinOffer.window.display}
           </span>
-          <h1 className="text-balance font-serif text-[clamp(34px,4.5vw,72px)] font-extrabold leading-[1.02] tracking-tight">
-            Fee cashback for the{" "}
-            <ShimmerText>community.</ShimmerText>
+          <h1 className="text-balance font-sans text-[clamp(32px,4vw,60px)] font-extrabold leading-[1.1] tracking-tight">
+            {elefinOffer.title}
           </h1>
-          <p className="max-w-xl text-pretty text-[17px] font-light leading-[1.75] text-muted">
-            {elefinOffer.description}
+          <p className="max-w-2xl text-pretty text-[17px] font-light leading-[1.75] text-muted">
+            {elefinOffer.subtitle}
           </p>
         </Reveal>
       </header>

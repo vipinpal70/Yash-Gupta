@@ -24,11 +24,11 @@ export const siteConfig = {
   communityStats: null as null | { members: string; label: string }[],
 
   mentorshipUrl: "#contact",
-  communityUrl: "#", // placeholder — replace with live community invite link
+  communityUrl: "https://t.me/YashGuptaTrader",
 
   social: {
     discord: "", // e.g. "https://discord.gg/your-invite"
-    telegram: "",
+    telegram: "https://t.me/YashGuptaTrader",
     instagram: "",
     youtube: "",
     x: "",

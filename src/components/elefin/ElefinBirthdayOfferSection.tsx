@@ -62,7 +62,7 @@ export function ElefinBirthdayOfferSection() {
               key={step.title}
               className="grid grid-cols-[56px_1fr] items-baseline gap-5 border-b border-emerald/25 py-7"
             >
-              <span className="font-serif text-xl font-extrabold text-emerald">
+              <span className="font-sans text-xl font-extrabold text-emerald">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <div className="flex flex-col gap-1.5">

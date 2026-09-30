@@ -19,29 +19,31 @@ export function ElefinOfferBanner() {
   const isLive = status === "live";
 
   return (
-    <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-gold/50 bg-[linear-gradient(160deg,#2A2008_0%,#0F0C04_100%)] px-3 py-1.5 shadow-[0_1px_0_0_rgba(255,214,138,0.25)_inset,0_14px_30px_-10px_rgba(201,164,92,0.55)] sm:gap-3 sm:px-4 sm:py-2">
-      <span className="relative flex size-1.5 shrink-0">
-        {isLive ? (
-          <motion.span
-            className="absolute inline-flex size-full rounded-full bg-gold"
-            animate={{ scale: [1, 2.4], opacity: [0.7, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
-          />
-        ) : null}
-        <span className="relative inline-flex size-1.5 rounded-full bg-gold" />
-      </span>
+    <div className="inline-flex w-full max-w-3xl lg:max-w-xl items-center justify-between gap-4 rounded-full border border-gold/55 bg-[linear-gradient(160deg,#2A2008_0%,#0F0C04_100%)] px-5 py-2.5 shadow-[0_2px_0_0_rgba(255,214,138,0.25)_inset,0_18px_40px_-10px_rgba(201,164,92,0.45)] sm:gap-6 sm:px-6 sm:py-3.5">
+      <div className="flex min-w-0 items-center gap-3 sm:gap-3.5">
+        <span className="relative flex size-2.5 shrink-0">
+          {isLive ? (
+            <motion.span
+              className="absolute inline-flex size-full rounded-full bg-gold"
+              animate={{ scale: [1, 2.4], opacity: [0.7, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
+            />
+          ) : null}
+          <span className="relative inline-flex size-2.5 rounded-full bg-gold" />
+        </span>
 
-      <p className="min-w-0 truncate text-[10px] leading-snug text-[#F4E6C8] sm:text-[11px]">
-        <span className="font-bold uppercase tracking-[0.12em] text-gold">
-          {elefinOffer.window.display}
-        </span>{" "}
-        · {isLive ? "Zero fees" : "Zero fees coming"} with{" "}
-        {elefinOffer.brokerName}
-      </p>
+        <p className="min-w-0 truncate text-xs leading-snug text-[#F4E6C8] sm:text-[15px]">
+          <span className="font-bold uppercase tracking-[0.14em] text-gold">
+            {elefinOffer.window.display}
+          </span>{" "}
+          · {isLive ? "Zero fees" : "Zero fees coming"} with{" "}
+          <span className="font-semibold text-white">{elefinOffer.brokerName}</span>
+        </p>
+      </div>
 
       <Link
         href={elefinOffer.href}
-        className="shrink-0 rounded-full bg-gold px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.12em] text-ink transition-colors hover:bg-[#DCB876]"
+        className="shrink-0 rounded-full bg-gold px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-ink transition-all hover:scale-105 hover:bg-[#DCB876] sm:px-5 sm:py-2 sm:text-xs"
       >
         {isLive ? "Register" : "Details"}
       </Link>

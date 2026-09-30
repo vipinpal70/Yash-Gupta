@@ -30,7 +30,7 @@ export function Hero() {
             {hero.eyebrow}
           </div>
 
-          <h1 className="text-balance font-serif text-[2rem] font-extrabold leading-[1.02] tracking-tight sm:text-[2.875rem] lg:text-[3.5rem]">
+          <h1 className="text-balance font-sans text-[2rem] font-extrabold leading-[1.02] tracking-tight sm:text-[2.875rem] lg:text-[3.5rem]">
             {hero.headline.map((part, i) =>
               part.shimmer ? (
                 <ShimmerText key={i}>{part.text}</ShimmerText>
@@ -40,8 +40,24 @@ export function Hero() {
             )}
           </h1>
 
-          <p className="max-w-md text-pretty text-[17px] font-light leading-[1.75] text-muted">
-            {hero.paragraph}
+          <p className="max-w-xl text-pretty text-[17px] font-light leading-[1.75] text-muted">
+            {(() => {
+              const highlight =
+                "Trade Mathematics";
+              if (hero.paragraph.includes(highlight)) {
+                const [before, after] = hero.paragraph.split(highlight);
+                return (
+                  <>
+                    {before}
+                    <span className="font-semibold text-emerald-light">
+                      {highlight}
+                    </span>
+                    {after}
+                  </>
+                );
+              }
+              return hero.paragraph;
+            })()}
           </p>
 
           <div className="flex flex-wrap gap-6 border-t border-emerald/20 pt-2 sm:gap-12">

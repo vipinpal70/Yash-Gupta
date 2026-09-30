@@ -23,7 +23,7 @@ export default function ElefinBirthdayOfferPage() {
             <span className="h-px w-10 bg-emerald" />
             {elefinBirthdayOffer.eyebrow} · {elefinBirthdayOffer.window.display}
           </span>
-          <h1 className="text-balance font-serif text-[clamp(34px,4.5vw,72px)] font-extrabold leading-[1.02] tracking-tight">
+          <h1 className="text-balance font-sans text-[clamp(34px,4.5vw,72px)] font-extrabold leading-[1.02] tracking-tight">
             Get {elefinBirthdayOffer.amount} in{" "}
             <ShimmerText>just one minute.</ShimmerText>
           </h1>
