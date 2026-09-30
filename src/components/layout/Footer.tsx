@@ -19,10 +19,10 @@ export function Footer() {
           unoptimized
         />
         <div className="flex flex-col justify-center leading-none">
-          <span className="font-serif text-[17px] font-extrabold tracking-tight text-foreground">
+          <span className="font-serif text-[17px] font-bold tracking-tight text-foreground">
             Yash
           </span>
-          <span className="font-serif text-[17px] font-extrabold tracking-tight text-foreground">
+          <span className="font-serif text-[17px] font-bold tracking-tight text-foreground">
             Gupta
           </span>
         </div>

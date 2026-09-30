@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { ShimmerText } from "@/components/landing/ShimmerText";
 import { Reveal } from "@/components/ui/Reveal";
-import { ContactForm } from "@/components/contact/ContactForm";
 import { contact } from "@/data/yash-gupta-landing";
+import { MessageCircle, Send, } from "lucide-react";
 
 export function ContactSection() {
   return (
@@ -24,25 +24,29 @@ export function ContactSection() {
               href={contact.whatsapp.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-emerald px-8 py-[18px] text-[12px] font-semibold uppercase tracking-[0.2em] text-background transition-colors hover:bg-foreground"
+              className="flex items-center gap-2 bg-emerald px-8 py-[18px] text-[12px] font-semibold uppercase tracking-[0.2em] text-background transition-colors hover:bg-foreground"
             >
+              <MessageCircle className="h-4 w-4" />
               {contact.whatsapp.label}
             </a>
             <a
-              href={contact.instagram.href}
+              href={contact.telegram.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-foreground/24 px-8 py-[18px] text-[12px] uppercase tracking-[0.2em] text-foreground transition-colors hover:border-emerald hover:text-emerald"
+              className="flex items-center gap-2 border border-foreground/24 px-8 py-[18px] text-[12px] uppercase tracking-[0.2em] text-foreground transition-colors hover:border-emerald hover:text-emerald"
             >
-              {contact.instagram.label}
+              <Send className="h-4 w-4" />
+              {contact.telegram.label}
             </a>
-          </div>
-
-          <div className="flex w-full flex-col gap-6 border-t border-foreground/12 pt-8">
-            <span className="text-[11px] uppercase tracking-[0.32em] text-emerald">
-              Or send a message
-            </span>
-            <ContactForm />
+            <a
+              href={contact.youtube.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 border border-foreground/24 px-8 py-[18px] text-[12px] uppercase tracking-[0.2em] text-foreground transition-colors hover:border-emerald hover:text-emerald"
+            >
+              <img src="/youtube-brands-solid-full.svg" alt="YouTube" className="h-5 w-auto" />
+              {contact.youtube.label}
+            </a>
           </div>
         </Reveal>
 

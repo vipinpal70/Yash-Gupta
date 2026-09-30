@@ -26,7 +26,7 @@ export function CashbackSection() {
         </p>
       </Reveal>
 
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
+      <div className="flex justify-center items-center">
         <RevealGroup className="flex flex-col border-t border-emerald/25" stagger={0.08}>
           {cashback.steps.map((step, index) => (
             <RevealItem
@@ -55,7 +55,7 @@ export function CashbackSection() {
             </a>
           </RevealItem>
         </RevealGroup>
-
+      {/* 
         <Reveal delay={0.1}>
           <div className="flex h-full flex-col gap-8 border border-emerald/35 bg-[linear-gradient(160deg,rgba(91,155,255,0.14),rgba(91,155,255,0.02)_60%)] p-8 sm:p-10">
             <div className="flex items-center justify-between gap-3">
@@ -103,7 +103,7 @@ export function CashbackSection() {
               broker, account type and eligible trading activity.
             </p>
           </div>
-        </Reveal>
+        </Reveal> */}
       </div>
     </section>
   );

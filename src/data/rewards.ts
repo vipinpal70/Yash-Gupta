@@ -28,7 +28,7 @@ export const cashback = {
     {
       title: "Paid out on a set schedule",
       description:
-        "Cashback is settled on a regular schedule, not held indefinitely or gated behind conditions.",
+        "Cashback is settled once in a week.",
     },
   ],
 };

@@ -40,6 +40,9 @@ export function FiveXTraders() {
                 </a>
                 <a
                   href={fiveXTraders.secondaryCta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download="5x Community Trades.pdf"
                   className="w-fit border border-foreground/24 px-8 py-[18px] text-[12px] uppercase tracking-[0.2em] text-foreground transition-colors hover:border-emerald hover:text-emerald"
                 >
                   {fiveXTraders.secondaryCta.label}

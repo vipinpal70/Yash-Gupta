@@ -47,7 +47,7 @@ export default function RewardsPage() {
         </Reveal>
       </header>
       <Brokers />
-      {/* <CashbackSection /> */}
+      <CashbackSection />
       <CashbackProofCarousel />
       {/* <CompetitionSection /> */}
     </>

@@ -148,7 +148,7 @@ export const fiveXTraders = {
   description:
     "An exclusive Discord for Yash's community members. Every day, he shares his market outlook and trade setups — straight from his desk.",
   cta: { label: "Join 5x Traders", href: "https://forms.gle/t3Fcv2JpMUQHa9776" },
-  secondaryCta: { label: "Download 5x Trading Report", href: "#" },
+  secondaryCta: { label: "Download 5x Trading Report", href: "/5x Community Trades.pdf" },
   features: [
     {
       no: "01",
@@ -180,7 +180,7 @@ export const tools = {
       chartImage: "/btc.jpeg",
       chartAlt: "BTC MTF indicator chart with buy and sell signals on a 15-minute chart",
       title: "BTC MTF Indicator",
-      subtitle: "Over 55,000 points captured in six months",
+      subtitle: "Over 55,734 points captured in six months",
       big: "55K",
       cta: "Request access",
       href: "https://forms.gle/EY1NSBgSD5Vh5uqH6",
@@ -191,7 +191,7 @@ export const tools = {
       chartImage: "/gold.jpeg",
       chartAlt: "Gold MTF indicator chart with buy and sell signals on a 1-minute chart",
       title: "Gold MTF Indicator",
-      subtitle: "Over 20,000 pips captured in six months",
+      subtitle: "Over 20,240 pips captured in six months",
       big: "20K",
       cta: "Request access",
       href: "https://forms.gle/guAACRcVGrm2XYgK7",
@@ -236,7 +236,8 @@ export const contact = {
   description:
     "Reach the team to join a program, request indicator access, or reserve a place at the next Traders' Villa.",
   whatsapp: { label: "WhatsApp", href: "https://wa.me/919516814034" },
-  instagram: { label: "Instagram", href: "https://www.instagram.com/iiamyashgupta" },
+  telegram: { label: "Telegram", href: "https://t.me/YashGuptaTrader" },
+  youtube: { label: "YouTube", href: "https://www.youtube.com/" },
   image: "/yash-gupta/yash-chair.jpg",
 };
 

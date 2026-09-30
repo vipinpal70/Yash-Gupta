@@ -13,44 +13,21 @@ export type Partner = {
 
 export const partners: Partner[] = [
   {
+    name: "Elefin",
+    category: "Partner Broker",
+    href: "https://partners.elefin.com/go/YASH",
+    code: "YASH",
+  },
+  {
+    name: "CoinSwitch",
+    category: "Partner Broker",
+    href: "https://coinswitch.co/pro/signup?code=qXSfkqh",
+  },
+  {
     name: "XM",
     category: "Partner Broker",
     href: "https://clicks.pipaffiliates.com/c?c=1154541&l=en&p=1",
     code: "YASHGUPTA",
-  },
-  {
-    name: "Xellion",
-    category: "Partner Broker",
-    href: "http://account.xellion.com/signup/SRmN6ZTS",
-    code: "YASHGUPTA",
-  },
-  {
-    name: "Bitfunded",
-    category: "Prop Firm",
-    href: "https://www.bitfunded.com/client/register?regid=5552644533",
-    code: "YASHGUPTA",
-  },
-  {
-    name: "Funded Friday",
-    category: "Prop Firm",
-    href: "https://fundedfriday.com/checkout?ref=YASHGUPTA",
-    code: "YASHGUPTA",
-  },
-  {
-    name: "Coin DCX",
-    category: "Crypto Exchange",
-    href: "https://join.coindcx.com/invite/LcsTQ",
-  },
-  {
-    name: "BingX",
-    category: "Crypto Exchange",
-    href: "https://bingx.com/partner/YashGupta",
-    code: "YashGupta",
-  },
-  {
-    name: "CoinSwitch",
-    category: "Crypto Exchange",
-    href: "https://coinswitch.co/pro/signup?code=qXSfkqh",
   },
   {
     name: "Funded Squad",
@@ -59,10 +36,16 @@ export const partners: Partner[] = [
     code: "YG",
   },
   {
-    name: "Elefin",
-    category: "Partner Broker",
-    href: "https://partners.elefin.com/go/YASH",
-    code: "YASH",
+    name: "Blue Guardian",
+    category: "Prop Firm",
+    href: "https://blueguardian.com/?afmc=YG",
+    code: "YG",
+  },
+  {
+    name: "Bitfunded",
+    category: "Prop Firm",
+    href: "https://www.bitfunded.com/client/register?regid=5552644533",
+    code: "YASHGUPTA",
   },
 ];
 

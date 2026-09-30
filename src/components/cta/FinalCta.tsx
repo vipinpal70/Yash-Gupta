@@ -36,7 +36,7 @@ export function FinalCta() {
             </Button>
           </MagneticButton>
           <MagneticButton>
-            <Button href="https://wa.me/919516814034" external variant="secondary" arrow="right">
+            <Button href="https://forms.gle/VqZUrjizGNitygR17" external variant="secondary" arrow="right">
               Book Mentorship
             </Button>
           </MagneticButton>
