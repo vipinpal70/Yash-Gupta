@@ -30,7 +30,7 @@ export default function Home() {
 			<Hero />
 			<Marquee />
 			<BigStats />
-			<WhyYash />
+			{/* <WhyYash /> */}
 			<Mentorship />
 			<FiveXTraders />
 			<Tools />

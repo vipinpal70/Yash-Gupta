@@ -8,7 +8,7 @@ export function Mentorship() {
 	return (
 		<section
 			id="mentorship"
-			className="flex flex-col gap-18 px-5 py-22 sm:px-10 sm:py-28 lg:py-40"
+			className="flex flex-col gap-18 px-5 py-22 sm:px-10 sm:py-28 lg:pt-5"
 		>
 			<Reveal
 				y={40}

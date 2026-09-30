@@ -52,14 +52,14 @@ export const tickerItems = [
 export const bigStats = [
   {
     label: "BTC MTF Indicator",
-    value: 55000,
-    display: "55,000",
+    value: 55734,
+    display: "55,734",
     caption: "points captured in just six months",
   },
   {
     label: "Gold MTF Indicator",
-    value: 20000,
-    display: "20,000",
+    value: 20240,
+    display: "20,240",
     caption: "pips captured in just six months",
   },
 ];
