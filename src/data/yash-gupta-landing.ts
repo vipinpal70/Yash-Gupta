@@ -28,11 +28,10 @@ export const hero = {
   ],
   paragraph:
     "I'm Yash Gupta and for 12+ years I've traded Crypto and Gold. I have created several strategies with my own multi-timeframe system and I teach it exactly the way I use it. One thing that I have realised over the years is that to become profitable all you need to learn is Trade Mathematics, Risk Management and Repeatable Execution.",
-  stats: [
-    // { value: "55,000+", label: "BTC points · 6 mo" },
-    // { value: "20,000+", label: "Gold points · 6 mo" },
-    // { value: "12+ yrs", label: "Trading experience" },
-  ],
+  stats: [] as { value: string; label: string }[],
+  // { value: "55,000+", label: "BTC points · 6 mo" },
+  // { value: "20,000+", label: "Gold points · 6 mo" },
+  // { value: "12+ yrs", label: "Trading experience" },
   ctaPrimary: { label: "Learn with Yash", href: "#mentorship" },
   ctaSecondary: { label: "The Indicators", href: "#tools" },
   badge: { value: "12+", label: "years trading\ncrypto & gold" },
