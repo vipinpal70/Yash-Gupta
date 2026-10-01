@@ -6,7 +6,7 @@ export function Hero() {
   return (
     <header
       id="top"
-      className="relative overflow-hidden px-5 pt-8 sm:px-10 sm:pt-10 lg:pt-12"
+      className="relative overflow-hidden px-5 sm:px-10"
     >
       <div
         aria-hidden="true"
