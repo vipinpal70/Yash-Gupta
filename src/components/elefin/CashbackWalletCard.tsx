@@ -5,7 +5,9 @@ import { useInView } from "motion/react";
 import { Plus, Wallet } from "lucide-react";
 
 type Props = {
-  target: number;
+  base: number;
+  anchorDate: string;
+  seed: number;
   label: string;
   sublabel: string;
   caption: string;
@@ -13,8 +15,47 @@ type Props = {
   addedLabel: string;
 };
 
+const DAY_MS = 24 * 60 * 60 * 1000;
+const MIN_DAILY = 50_000;
+const MAX_DAILY = 60_000;
+
+// Small deterministic PRNG (mulberry32). Given the same seed it always yields
+// the same sequence, so the daily increments are fixed forever.
+function mulberry32(seed: number) {
+  let s = seed >>> 0;
+  return function () {
+    s = (s + 0x6d2b79f5) | 0;
+    let t = Math.imul(s ^ (s >>> 15), 1 | s);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+// Returns the running cashback total. We build a fixed array of random daily
+// increments (50,000–60,000) from `seed` — one per day since `anchorDate` — and
+// add them onto `base`. Because the result depends only on the calendar date
+// (not on when the page was first opened), it is identical on every refresh and
+// for every visitor, grows by one increment each day, and never resets — no
+// database or localStorage required.
+function getDailyCashback(base: number, anchorDate: string, seed: number) {
+  const anchor = new Date(anchorDate).getTime();
+  const daysElapsed = Math.max(0, Math.floor((Date.now() - anchor) / DAY_MS));
+
+  const rng = mulberry32(seed);
+  const dailyIncrements: number[] = [];
+  for (let i = 0; i < daysElapsed; i++) {
+    dailyIncrements.push(
+      Math.floor(rng() * (MAX_DAILY - MIN_DAILY + 1)) + MIN_DAILY,
+    );
+  }
+
+  return dailyIncrements.reduce((total, amount) => total + amount, base);
+}
+
 export function CashbackWalletCard({
-  target,
+  base,
+  anchorDate,
+  seed,
   label,
   sublabel,
   caption,
@@ -23,13 +64,16 @@ export function CashbackWalletCard({
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const targetRef = useRef<number | null>(null);
   const [value, setValue] = useState(0);
-  const [done, setDone] = useState(false);
-  const [pulse, setPulse] = useState(false);
 
-  // Count up from 0 to the target once the card scrolls into view.
+  // Count up from 0 to the daily-updated total once the card scrolls into view.
   useEffect(() => {
     if (!inView) return;
+    // Resolve the running daily total once, the first time the card appears.
+    if (targetRef.current === null)
+      targetRef.current = getDailyCashback(base, anchorDate, seed);
+    const target = targetRef.current;
     const start = performance.now();
     const duration = 2200;
     let frame: number;
@@ -42,24 +86,12 @@ export function CashbackWalletCard({
         frame = requestAnimationFrame(step);
       } else {
         setValue(target);
-        setDone(true);
       }
     }
 
     frame = requestAnimationFrame(step);
     return () => cancelAnimationFrame(frame);
-  }, [inView, target]);
-
-  // Keep the numbers moving — small live additions after the count-up settles.
-  useEffect(() => {
-    if (!done) return;
-    const id = setInterval(() => {
-      setValue((v) => v + 22.8);
-      setPulse(true);
-      setTimeout(() => setPulse(false), 6300);
-    }, 8000);
-    return () => clearInterval(id);
-  }, [done]);
+  }, [inView, base, anchorDate, seed]);
 
   const formatted = value.toLocaleString("en-IN", {
     minimumFractionDigits: 1,
@@ -100,11 +132,7 @@ export function CashbackWalletCard({
         </div>
 
         <div className="mt-auto flex items-center gap-3 self-start rounded-full border border-emerald/25 bg-background/40 py-2.5 pl-2.5 pr-5">
-          <span
-            className={`flex size-9 items-center justify-center rounded-full border border-emerald/50 bg-emerald/15 text-emerald transition-transform duration-500 ${
-              pulse ? "scale-110" : "scale-100"
-            }`}
-          >
+          <span className="flex size-9 items-center justify-center rounded-full border border-emerald/50 bg-emerald/15 text-emerald">
             <Plus className="size-4" />
           </span>
           <span className="text-[15px] font-light text-muted">

@@ -49,7 +49,9 @@ export function ElefinOfferSection() {
 
           {/* Column 2 — live cashback wallet */}
           <CashbackWalletCard
-            target={elefinOffer.wallet.target}
+            base={elefinOffer.wallet.base}
+            anchorDate={elefinOffer.wallet.anchorDate}
+            seed={elefinOffer.wallet.seed}
             label={elefinOffer.wallet.label}
             sublabel={elefinOffer.wallet.sublabel}
             caption={elefinOffer.wallet.caption}
