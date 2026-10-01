@@ -18,7 +18,7 @@ export function Hero() {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-[-6vw] left-1/2 -translate-x-1/2 select-none whitespace-nowrap font-serif text-[22vw] font-bold leading-[0.8] text-transparent [-webkit-text-stroke:1px_rgba(91,155,255,0.13)]"
+        className="pointer-events-none absolute bottom-[-6vw] left-1/2 -translate-x-1/2 select-none whitespace-nowrap font-serif text-[19vw] font-bold leading-[0.8] text-transparent [-webkit-text-stroke:1px_rgba(91,155,255,0.13)]"
       >
         BTC · XAU
       </div>
@@ -93,7 +93,7 @@ export function Hero() {
           <div className="absolute left-0 right-[-20%] top-0 aspect-square rounded-full bg-[radial-gradient(circle,rgba(91,155,255,0.45),rgba(30,79,216,0.12)_45%,rgba(30,79,216,0)_68%)] blur-[10px]" />
           <div className="absolute left-[6%] right-[-14%] top-[6%] aspect-square rounded-full border border-emerald/25" />
           <Image
-            src="/yash-gupta/yash-cutout.png"
+            src="/yg-new-landing.png"
             alt="Yash Gupta"
             width={1200}
             height={1244}

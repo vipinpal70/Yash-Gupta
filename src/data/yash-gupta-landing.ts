@@ -104,7 +104,7 @@ export const mentorship = {
     "From an immersive residential retreat to a private seat at the desk — each format is kept small by design.",
   marathon: {
     no: "No. 01",
-    tag: "Intensive",
+    tag: "Coming Soon",
     title: "Traders Marathon",
     description:
       "A sustained run of live trading sessions, built to sharpen discipline, execution and consistency.",
@@ -113,7 +113,7 @@ export const mentorship = {
   },
   circle: {
     no: "No. 02",
-    tag: "Community",
+    tag: "Coming Soon",
     title: "Traders' Circle",
     description:
       "15 days intensive learning, and trading sessions with mentors along with 3 months access to indicators and 5x community.",
@@ -122,7 +122,7 @@ export const mentorship = {
   },
   villa: {
     no: "No. 03",
-    tag: "Flagship",
+    tag: "Coming Soon",
     title: "Traders' Villa",
     description:
       "An immersive, stay-in retreat. Live markets by day, trade reviews by night, among a small circle of serious traders.",
@@ -131,6 +131,7 @@ export const mentorship = {
   },
   oneOnOne: {
     no: "No. 04",
+    tag: "Ongoing",
     title: "One-on-One",
     online:
       "Private live sessions over video. Your trades, your gaps, a plan shaped around you — from anywhere.",
@@ -237,7 +238,8 @@ export const contact = {
     "Reach the team to join a program, request indicator access, or reserve a place at the next Traders' Villa.",
   whatsapp: { label: "WhatsApp", href: "https://wa.me/919516814034" },
   telegram: { label: "Telegram", href: "https://t.me/YashGuptaTrader" },
-  youtube: { label: "YouTube", href: "https://www.youtube.com/" },
+  youtube: { label: "YouTube", href: "https://www.youtube.com/@iamyashgupta" },
+  instagram: { label: "Instagram", href: "https://www.instagram.com/iiamyashgupta" },
   image: "/yash-gupta/yash-chair.jpg",
 };
 
@@ -245,4 +247,9 @@ export const footer = {
   name: "Yash Gupta",
   disclaimer:
     "Educational content only, not financial advice. Trading crypto and commodities carries high risk.",
+  socials: [
+    { label: "Instagram", href: "https://www.instagram.com/iiamyashgupta", network: "instagram" as const },
+    { label: "YouTube", href: "https://www.youtube.com/@iamyashgupta", network: "youtube" as const },
+    { label: "Telegram", href: "https://t.me/YashGuptaTrader", network: "telegram" as const },
+  ],
 };

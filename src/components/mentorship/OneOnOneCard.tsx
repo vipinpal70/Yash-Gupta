@@ -10,35 +10,40 @@ export function OneOnOneCard() {
 
   return (
     <article className="group flex min-h-[440px] flex-col justify-between gap-16 border border-emerald/20 bg-ink p-9 transition-all duration-500 ease-[cubic-bezier(.2,.7,.2,1)] hover:-translate-y-2 hover:border-emerald/70 hover:shadow-[0_30px_80px_-30px_rgba(91,155,255,0.4)]">
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex items-start justify-between gap-3">
         <span className="font-serif text-xl font-bold text-emerald">
           {oneOnOne.no}
         </span>
-        <div className="flex border border-emerald/30">
-          <button
-            type="button"
-            onClick={() => setMode("online")}
-            className={cn(
-              "px-3 py-1.5 font-sans text-[10px] uppercase tracking-[0.2em] transition-colors",
-              mode === "online"
-                ? "bg-emerald text-background"
-                : "text-muted hover:text-foreground",
-            )}
-          >
-            Online
-          </button>
-          <button
-            type="button"
-            onClick={() => setMode("offline")}
-            className={cn(
-              "px-3 py-1.5 font-sans text-[10px] uppercase tracking-[0.2em] transition-colors",
-              mode === "offline"
-                ? "bg-emerald text-background"
-                : "text-muted hover:text-foreground",
-            )}
-          >
-            Offline
-          </button>
+        <div className="flex flex-col items-end gap-1.5">
+          <div className="flex border border-emerald/30">
+            <button
+              type="button"
+              onClick={() => setMode("online")}
+              className={cn(
+                "px-3 py-1.5 font-sans text-[10px] uppercase tracking-[0.2em] transition-colors",
+                mode === "online"
+                  ? "bg-emerald text-background"
+                  : "text-muted hover:text-foreground",
+              )}
+            >
+              Online
+            </button>
+            <button
+              type="button"
+              onClick={() => setMode("offline")}
+              className={cn(
+                "px-3 py-1.5 font-sans text-[10px] uppercase tracking-[0.2em] transition-colors",
+                mode === "offline"
+                  ? "bg-emerald text-background"
+                  : "text-muted hover:text-foreground",
+              )}
+            >
+              Offline
+            </button>
+          </div>
+          <span className="text-[10px] uppercase tracking-[0.28em] text-emerald">
+            {oneOnOne.tag}
+          </span>
         </div>
       </div>
 

@@ -13,11 +13,11 @@ export function Navbar() {
         aria-label="Yash Gupta"
       >
         <Image
-          src="/apple-icon"
+          src="/yg-monogram.png"
           alt="YG"
           width={40}
           height={40}
-          className="size-10 rounded-xl object-contain shadow-[0_2px_12px_rgba(30,79,216,0.35)] ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-105"
+          className="size-11 rounded-xl object-contain shadow-[0_2px_12px_rgba(30,79,216,0.35)] ring-1 ring-white/10 transition-transform duration-300 group-hover:scale-105"
           priority
           unoptimized
         />

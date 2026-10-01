@@ -1,3 +1,5 @@
+import { ShimmerText } from "@/components/landing/ShimmerText";
+
 export const rewardsPage = {
   eyebrow: "Rewards",
   title: [
@@ -10,7 +12,7 @@ export const rewardsPage = {
 
 export const cashback = {
   eyebrow: "I — Cashback",
-  title: [{ text: "Trade. Earn. " }, { text: "Get part of it back.", plain: true }],
+  title: [{ text: "Trade. Earn. " }, { text: "Get part of it back.", ShimmerText: true }],
   description:
     "A share of eligible trading activity with partner brokers comes back to you — tracked automatically, no extra steps.",
   cta: { label: "Ask About Cashback", href: "/#contact" },

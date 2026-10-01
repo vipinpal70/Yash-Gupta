@@ -19,11 +19,31 @@ export const cashbackProof = {
       alt: "WhatsApp screenshot confirming a UPI cashback payment, recipient details redacted",
     },
     {
-      src: "/cashback-2-redacted.jpeg",
+      src: "/cashback-7-redacted.jpeg",
+      alt: "WhatsApp screenshot confirming a UPI cashback payment, recipient details redacted",
+    },
+    {
+      src: "/cashback-6-redacted.jpeg",
+      alt: "WhatsApp screenshot confirming a UPI cashback payment, recipient details redacted",
+    },
+    {
+      src: "/cashback-8-redacted.jpeg",
+      alt: "WhatsApp screenshot confirming a UPI cashback payment, recipient details redacted",
+    },
+    {
+      src: "/cashback-5-redacted.jpeg",
       alt: "WhatsApp screenshot confirming a UPI cashback payment, recipient details redacted",
     },
     {
       src: "/cashback-3-redacted.jpeg",
+      alt: "WhatsApp screenshot confirming a UPI cashback payment, recipient details redacted",
+    },
+    {
+      src: "/cashback-2-redacted.jpeg",
+      alt: "WhatsApp screenshot confirming a UPI cashback payment, recipient details redacted",
+    },
+    {
+      src: "/cashback-4-redacted.jpeg",
       alt: "WhatsApp screenshot confirming a UPI cashback payment, recipient details redacted",
     },
   ],

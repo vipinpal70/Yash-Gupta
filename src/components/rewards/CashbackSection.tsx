@@ -13,11 +13,11 @@ export function CashbackSection() {
           <span className="text-[11px] uppercase tracking-[0.32em] text-emerald">
             {cashback.eyebrow}
           </span>
-          <h2 className="font-serif text-[clamp(34px,4.4vw,70px)] font-extrabold leading-[1] tracking-tight">
+          <h2 className="font-sans text-[clamp(34px,4.4vw,70px)] font-extrabold leading-[1] tracking-tight">
             {cashback.title.map((part, i) => (
-              <span key={i} className={part.plain ? "text-emerald" : ""}>
+              <ShimmerText key={i}>
                 {part.text}
-              </span>
+              </ShimmerText>
             ))}
           </h2>
         </div>
