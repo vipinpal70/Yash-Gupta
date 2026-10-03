@@ -51,6 +51,7 @@ export function ElefinOfferSection() {
           <CashbackWalletCard
             base={elefinOffer.wallet.base}
             anchorDate={elefinOffer.wallet.anchorDate}
+            endDate={elefinOffer.window.end}
             seed={elefinOffer.wallet.seed}
             label={elefinOffer.wallet.label}
             sublabel={elefinOffer.wallet.sublabel}

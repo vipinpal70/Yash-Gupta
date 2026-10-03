@@ -7,6 +7,7 @@ import { Plus, Wallet } from "lucide-react";
 type Props = {
   base: number;
   anchorDate: string;
+  endDate: string;
   seed: number;
   label: string;
   sublabel: string;
@@ -16,11 +17,17 @@ type Props = {
 };
 
 const DAY_MS = 24 * 60 * 60 * 1000;
-const MIN_DAILY = 50_000;
-const MAX_DAILY = 60_000;
+// The 1,30,000 daily cap is spread evenly across the whole day so the counter
+// is always ticking — on any visit the value is visibly increasing. A new slot
+// lands every 5s (17,280 slots/day → avg ~₹7.5/slot), and the display re-reads
+// every 5s so the on-screen number updates within a few seconds.
+const SLOT_MS = 4_000; // 5s per deterministic increment
+const DISPLAY_MS = 4_000; // display re-reads every 5 seconds
+const SLOTS_PER_DAY = DAY_MS / SLOT_MS; // 17,280
+const DAILY_CAP = 1_30_000; // exact amount added per full day
 
 // Small deterministic PRNG (mulberry32). Given the same seed it always yields
-// the same sequence, so the daily increments are fixed forever.
+// the same sequence, so the per-slot increments are fixed forever.
 function mulberry32(seed: number) {
   let s = seed >>> 0;
   return function () {
@@ -31,30 +38,57 @@ function mulberry32(seed: number) {
   };
 }
 
-// Returns the running cashback total. We build a fixed array of random daily
-// increments (50,000–60,000) from `seed` — one per day since `anchorDate` — and
-// add them onto `base`. Because the result depends only on the calendar date
-// (not on when the page was first opened), it is identical on every refresh and
-// for every visitor, grows by one increment each day, and never resets — no
-// database or localStorage required.
-function getDailyCashback(base: number, anchorDate: string, seed: number) {
-  const anchor = new Date(anchorDate).getTime();
-  const daysElapsed = Math.max(0, Math.floor((Date.now() - anchor) / DAY_MS));
+// How much a single day has accrued after `slots` slots have elapsed.
+//
+// Each day gets its own deterministic weight sequence (seed + day). The day's
+// increments are those weights normalised to sum to exactly DAILY_CAP, so the
+// total grows smoothly all day and lands precisely on 1,30,000 at midnight —
+// no jump when the day rolls over. Weights sit in [0.5, 1.5) so per-slot
+// increments vary (~₹3.8–11.3) and the counter never stalls or goes backwards.
+function dayAccrual(seed: number, day: number, slots: number) {
+  if (slots <= 0) return 0;
+  if (slots >= SLOTS_PER_DAY) return DAILY_CAP;
 
-  const rng = mulberry32(seed);
-  const dailyIncrements: number[] = [];
-  for (let i = 0; i < daysElapsed; i++) {
-    dailyIncrements.push(
-      Math.floor(rng() * (MAX_DAILY - MIN_DAILY + 1)) + MIN_DAILY,
-    );
+  const rng = mulberry32(seed + day);
+  let partial = 0;
+  let total = 0;
+  for (let i = 0; i < SLOTS_PER_DAY; i++) {
+    const w = 0.5 + rng();
+    if (i < slots) partial += w;
+    total += w;
   }
+  return (DAILY_CAP * partial) / total;
+}
 
-  return dailyIncrements.reduce((total, amount) => total + amount, base);
+// Returns the running cashback total at the current moment.
+//
+// Completed days each contribute exactly DAILY_CAP (the wallet carries over and
+// keeps growing day to day); the current day contributes its partial accrual.
+// Growth stops once the offer window (endDate, inclusive) has passed, freezing
+// the value at its final amount. Deterministic → identical on every device and
+// refresh for a given clock time.
+function getRunningTotal(
+  base: number,
+  anchorDate: string,
+  endDate: string,
+  seed: number,
+) {
+  const anchor = new Date(anchorDate).getTime();
+  const end = new Date(endDate).getTime() + DAY_MS; // include all of endDate
+  const now = Math.min(Date.now(), end);
+  if (now <= anchor) return base;
+
+  const dayIndex = Math.floor((now - anchor) / DAY_MS);
+  const dayStart = anchor + dayIndex * DAY_MS;
+  const slotsIntoDay = Math.floor((now - dayStart) / SLOT_MS);
+
+  return base + dayIndex * DAILY_CAP + dayAccrual(seed, dayIndex, slotsIntoDay);
 }
 
 export function CashbackWalletCard({
   base,
   anchorDate,
+  endDate,
   seed,
   label,
   sublabel,
@@ -67,27 +101,19 @@ export function CashbackWalletCard({
   const targetRef = useRef<number | null>(null);
   const [value, setValue] = useState(0);
 
-  // Count up from 0 to the daily-updated total once the card scrolls into view,
-  // then continuously increase the cashback value every 4-5s by +1210.45 - 2359.8.
+  // Count up from 0 to the current deterministic total once the card enters view,
+  // then re-read the deterministic total every 5 seconds so the display stays
+  // in sync with the slot clock — no random free-running counter.
   useEffect(() => {
     if (!inView) return;
-    // Resolve the running daily total once, the first time the card appears.
+
+    // Compute the target once (first mount) and start the count-up animation.
     if (targetRef.current === null)
-      targetRef.current = getDailyCashback(base, anchorDate, seed);
+      targetRef.current = getRunningTotal(base, anchorDate, endDate, seed);
     const target = targetRef.current;
     const start = performance.now();
     const duration = 2200;
     let frame: number;
-    let timeoutId: NodeJS.Timeout;
-
-    function scheduleTick() {
-      const delay = Math.floor(Math.random() * 1000) + 4000; // 4-5 seconds
-      timeoutId = setTimeout(() => {
-        const increment = 1210.45 + Math.random() * (2359.8 - 1210.45);
-        setValue((prev) => prev + increment);
-        scheduleTick();
-      }, delay);
-    }
 
     function step(now: number) {
       const progress = Math.min(1, (now - start) / duration);
@@ -97,16 +123,38 @@ export function CashbackWalletCard({
         frame = requestAnimationFrame(step);
       } else {
         setValue(target);
-        scheduleTick();
       }
     }
 
     frame = requestAnimationFrame(step);
+
+    // Check every 5 seconds whether a new slot boundary has been crossed.
+    // When it has, animate from the previous slot total to the new one.
+    const interval = setInterval(() => {
+      const next = getRunningTotal(base, anchorDate, endDate, seed);
+      const prev = targetRef.current ?? next;
+      if (next === prev) return; // still in same slot, nothing to do
+      targetRef.current = next;
+
+      // Smooth count-up animation from previous slot value to new slot value
+      const animStart = performance.now();
+      const animDuration = 800;
+
+      function animStep(t: number) {
+        const p = Math.min(1, (t - animStart) / animDuration);
+        const e = 1 - Math.pow(1 - p, 3);
+        setValue(prev + (next - prev) * e);
+        if (p < 1) frame = requestAnimationFrame(animStep);
+        else setValue(next);
+      }
+      frame = requestAnimationFrame(animStep);
+    }, DISPLAY_MS);
+
     return () => {
       cancelAnimationFrame(frame);
-      clearTimeout(timeoutId);
+      clearInterval(interval);
     };
-  }, [inView, base, anchorDate, seed]);
+  }, [inView, base, anchorDate, endDate, seed]);
 
   const formatted = value.toLocaleString("en-IN", {
     minimumFractionDigits: 1,

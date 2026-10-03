@@ -27,13 +27,13 @@ export const elefinOffer = {
   wallet: {
     label: "Community Cashback Wallet",
     sublabel: "Powered by Elefin",
-    // Starting balance. The displayed total = base + a fixed random 50k–60k for
-    // each day since `anchorDate`, so it climbs daily and is identical on every
-    // refresh / for every visitor. `seed` fixes the daily sequence — change it
-    // to reshuffle the amounts; move `anchorDate` back to start from a higher
-    // total.
-    base: 52356,
-    anchorDate: "2026-10-01",
+    // Starting balance. The displayed total = base + a daily cap of 1,30,000
+    // spread evenly across each day since `anchorDate` (a new increment every 5s,
+    // ~₹7.5/slot), carried over day to day until `window.end`. Identical on every
+    // refresh and device. To reset visible value: move `anchorDate` forward; to
+    // raise the floor: increase `base`.
+    base: 165000,
+    anchorDate: "2026-10-03",
     seed: 7421,
     caption: "Available cashback",
     added: "+₹5740",
