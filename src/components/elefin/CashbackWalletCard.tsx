@@ -24,6 +24,44 @@ const DISPLAY_MS = 90_000; // display re-reads every 1.5 min
 const SLOTS_PER_DAY = DAY_MS / SLOT_MS; // 960
 const DAILY_CAP = 1_30_000; // exact amount added per full day
 
+// Nightly quiet hours (viewer's local time): both the wallet total and the
+// "cashback added" badge stop incrementing between 1:00 and 5:00 each day.
+const PAUSE_START_HOUR = 1; // 1:00 — pause begins
+const PAUSE_END_HOUR = 5; // 5:00 — pause ends, increments resume
+const HOUR_MS = 60 * 60 * 1000;
+
+// Is the given moment inside today's 1:00–5:00 local pause window?
+function isPaused(ms: number) {
+  const h = new Date(ms).getHours();
+  return h >= PAUSE_START_HOUR && h < PAUSE_END_HOUR;
+}
+
+// Total milliseconds between `from` and `to` that fall inside a daily pause
+// window, so they can be subtracted out of elapsed time. Walking day by day
+// (the ranges we care about span at most a few weeks) keeps it simple and uses
+// local hours, matching how `isPaused` reads the clock.
+function pausedMsBetween(from: number, to: number) {
+  if (to <= from) return 0;
+  const dayStart = new Date(from);
+  dayStart.setHours(0, 0, 0, 0);
+  let paused = 0;
+  for (let t = dayStart.getTime(); t < to; t += DAY_MS) {
+    const windowStart = t + PAUSE_START_HOUR * HOUR_MS;
+    const windowEnd = t + PAUSE_END_HOUR * HOUR_MS;
+    const lo = Math.max(from, windowStart);
+    const hi = Math.min(to, windowEnd);
+    if (hi > lo) paused += hi - lo;
+  }
+  return paused;
+}
+
+// Active (non-paused) time elapsed from `anchor` up to `now`. The wallet accrues
+// against this instead of raw wall-clock time, so growth freezes during the
+// nightly pause and resumes from the same value at 5:00 — no jump.
+function activeElapsedMs(anchor: number, now: number) {
+  return now - anchor - pausedMsBetween(anchor, now);
+}
+
 // The "cashback added" badge shows a fresh random amount that refreshes on a
 // fixed cadence, so the social proof feels live without touching the running
 // wallet total above (which is deterministic).
@@ -87,8 +125,9 @@ function dayAccrual(seed: number, day: number, slots: number) {
 // Completed days each contribute exactly DAILY_CAP (the wallet carries over and
 // keeps growing day to day); the current day contributes its partial accrual.
 // Growth stops once the offer window (endDate, inclusive) has passed, freezing
-// the value at its final amount. Deterministic → identical on every device and
-// refresh for a given clock time.
+// the value at its final amount. Accrual runs against active (non-paused) time,
+// so the total holds steady through the nightly 1:00–5:00 window and one full
+// DAILY_CAP is earned per 24h of active time.
 function getRunningTotal(
   base: number,
   anchorDate: string,
@@ -100,9 +139,12 @@ function getRunningTotal(
   const now = Math.min(Date.now(), end);
   if (now <= anchor) return base;
 
-  const dayIndex = Math.floor((now - anchor) / DAY_MS);
-  const dayStart = anchor + dayIndex * DAY_MS;
-  const slotsIntoDay = Math.floor((now - dayStart) / SLOT_MS);
+  const elapsed = activeElapsedMs(anchor, now);
+  if (elapsed <= 0) return base;
+
+  const dayIndex = Math.floor(elapsed / DAY_MS);
+  const intoDay = elapsed - dayIndex * DAY_MS;
+  const slotsIntoDay = Math.floor(intoDay / SLOT_MS);
 
   return base + dayIndex * DAILY_CAP + dayAccrual(seed, dayIndex, slotsIntoDay);
 }
@@ -132,11 +174,12 @@ export function CashbackWalletCard({
     return () => clearInterval(interval);
   }, [anchorDate]);
 
-  // Refresh the "cashback added" badge with a new random amount between
-  // ₹200–₹300 every 10 seconds while the card is visible.
+  // Refresh the "cashback added" badge with a new random amount while the card
+  // is visible — but hold the current amount steady during the nightly pause.
   useEffect(() => {
     if (!inView) return;
     const interval = setInterval(() => {
+      if (isPaused(Date.now())) return;
       setAddedAmount(randomAddedAmount());
     }, ADDED_REFRESH_MS);
     return () => clearInterval(interval);
