@@ -67,7 +67,8 @@ export function CashbackWalletCard({
   const targetRef = useRef<number | null>(null);
   const [value, setValue] = useState(0);
 
-  // Count up from 0 to the daily-updated total once the card scrolls into view.
+  // Count up from 0 to the daily-updated total once the card scrolls into view,
+  // then continuously increase the cashback value every 4-5s by +1210.45 - 2359.8.
   useEffect(() => {
     if (!inView) return;
     // Resolve the running daily total once, the first time the card appears.
@@ -77,6 +78,16 @@ export function CashbackWalletCard({
     const start = performance.now();
     const duration = 2200;
     let frame: number;
+    let timeoutId: NodeJS.Timeout;
+
+    function scheduleTick() {
+      const delay = Math.floor(Math.random() * 1000) + 4000; // 4-5 seconds
+      timeoutId = setTimeout(() => {
+        const increment = 1210.45 + Math.random() * (2359.8 - 1210.45);
+        setValue((prev) => prev + increment);
+        scheduleTick();
+      }, delay);
+    }
 
     function step(now: number) {
       const progress = Math.min(1, (now - start) / duration);
@@ -86,16 +97,20 @@ export function CashbackWalletCard({
         frame = requestAnimationFrame(step);
       } else {
         setValue(target);
+        scheduleTick();
       }
     }
 
     frame = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(frame);
+    return () => {
+      cancelAnimationFrame(frame);
+      clearTimeout(timeoutId);
+    };
   }, [inView, base, anchorDate, seed]);
 
   const formatted = value.toLocaleString("en-IN", {
     minimumFractionDigits: 1,
-    maximumFractionDigits: 1,
+    maximumFractionDigits: 2,
   });
 
   return (

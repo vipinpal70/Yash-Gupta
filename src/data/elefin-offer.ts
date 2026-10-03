@@ -72,11 +72,6 @@ export const elefinOffer = {
     },
     {
       number: "03",
-      title: "Fill out the form",
-      description: "Submit your details for verification.",
-    },
-    {
-      number: "04",
       title: "Start trading!",
       description: "Enjoy zero fees once verified.",
     },

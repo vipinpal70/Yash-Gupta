@@ -100,13 +100,13 @@ export function Hero() {
             priority
             className="relative mb-[-24%] mr-[-22%] block w-[128%] max-w-none [mask-image:linear-gradient(180deg,#000_56%,transparent_70%)] drop-shadow-[0_30px_80px_rgba(30,79,216,0.35)]"
           />
-          <div className="absolute bottom-[32%] left-0 z-[2] flex size-[150px] items-center justify-center rounded-full border border-emerald/40 bg-background shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
+          <div className="absolute bottom-[18%] left-0 z-[2] flex size-[130px] items-center justify-center rounded-full border border-emerald/40 bg-background shadow-[0_20px_60px_rgba(0,0,0,0.6)] sm:bottom-[32%] sm:size-[150px]">
             <div className="absolute inset-2 rounded-full border border-dashed border-emerald/50 [animation:yg-spin_24s_linear_infinite]" />
             <div className="flex flex-col items-center gap-0.5">
-              <ShimmerText className="font-serif text-[44px] font-extrabold leading-[1.05]">
+              <ShimmerText className="font-serif text-[36px] font-extrabold leading-[1.05] sm:text-[44px]">
                 {hero.badge.value}
               </ShimmerText>
-              <span className="whitespace-pre-line text-center text-[8px] uppercase leading-[1.5] tracking-[0.24em] text-muted">
+              <span className="whitespace-pre-line text-center text-[7.5px] uppercase leading-[1.4] tracking-[0.2em] text-muted sm:text-[8px] sm:leading-[1.5] sm:tracking-[0.24em]">
                 {hero.badge.label}
               </span>
             </div>

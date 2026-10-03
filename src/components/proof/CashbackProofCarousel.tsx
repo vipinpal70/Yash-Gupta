@@ -16,10 +16,34 @@ function chunk<T>(arr: T[], size: number): T[][] {
 }
 
 export function CashbackProofCarousel() {
-  const frames = chunk(cashbackProof.screenshots, PER_FRAME);
+  const [perFrame, setPerFrame] = useState(4);
+
+  useEffect(() => {
+    function updatePerFrame() {
+      const w = window.innerWidth;
+      if (w < 380) {
+        setPerFrame(1);
+      } else if (w < 640) {
+        setPerFrame(2);
+      } else {
+        setPerFrame(4);
+      }
+    }
+
+    updatePerFrame();
+    window.addEventListener("resize", updatePerFrame);
+    return () => window.removeEventListener("resize", updatePerFrame);
+  }, []);
+
+  const frames = chunk(cashbackProof.screenshots, perFrame);
   const [active, setActive] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const isScrolling = useRef(false);
+
+  // Keep active index within valid bounds when perFrame changes
+  useEffect(() => {
+    setActive((prev) => Math.min(prev, Math.max(0, frames.length - 1)));
+  }, [frames.length]);
 
   const goTo = useCallback(
     (index: number) => {
@@ -49,6 +73,13 @@ export function CashbackProofCarousel() {
     return () => track.removeEventListener("scroll", onScroll);
   }, []);
 
+  const itemWidthClass =
+    perFrame === 1
+      ? "w-[calc(100%-8px)] max-w-[320px]"
+      : perFrame === 2
+        ? "w-[calc(50%-4px)]"
+        : "w-[calc(25%-9px)]";
+
   return (
     <section className="flex flex-col gap-14 border-t border-emerald/15 px-5 py-22 sm:px-10 sm:py-28 lg:py-40">
       <Reveal y={40} className="grid grid-cols-1 items-end gap-10 lg:grid-cols-[1fr_auto]">
@@ -77,7 +108,7 @@ export function CashbackProofCarousel() {
 
       <Reveal delay={0.1}>
         <div className="relative">
-          {/* Carousel track — each slide is 100% wide and holds up to 4 images */}
+          {/* Carousel track — each slide is 100% wide */}
           <div
             ref={trackRef}
             className="mx-auto flex max-w-5xl snap-x snap-mandatory overflow-x-hidden scroll-smooth"
@@ -90,14 +121,14 @@ export function CashbackProofCarousel() {
                 {frame.map((shot) => (
                   <div
                     key={shot.src}
-                    className="w-[calc(25%-6px)] min-w-0 overflow-hidden border border-emerald/25 bg-ink sm:w-[calc(25%-9px)]"
+                    className={`min-w-0 overflow-hidden border border-emerald/25 bg-ink ${itemWidthClass}`}
                   >
                     <Image
                       src={shot.src}
                       alt={shot.alt}
                       width={739}
                       height={1600}
-                      sizes="(min-width: 768px) 180px, 22vw"
+                      sizes="(min-width: 768px) 180px, 45vw"
                       className="h-auto w-full"
                     />
                   </div>

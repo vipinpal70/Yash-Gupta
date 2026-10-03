@@ -9,7 +9,7 @@ export function ElefinOfferSection() {
       <Reveal y={40} className="mx-auto flex max-w-8xl flex-col gap-10 lg:gap-14">
         <h2 className="max-w-3xl text-balance font-sans text-[clamp(26px,3.4vw,46px)] font-extrabold leading-[1.1] tracking-tight">
           Get back your cashback in{" "}
-          <ShimmerText>4 simple steps</ShimmerText>
+          <ShimmerText>3 simple steps</ShimmerText>
         </h2>
 
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-16">

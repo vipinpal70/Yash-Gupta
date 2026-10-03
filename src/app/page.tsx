@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 export default function Home() {
 	return (
 		<>
-			<div className="flex w-full items-center justify-center px-5 pt-3 sm:px-10 sm:pt-6">
+			<div className="flex w-full items-center justify-center px-5 pt-3 sm:px-10 sm:pt-6 pb-8 md:pb-3 lg:pb-0">
 				<ElefinOfferBanner />
 				{/* <ElefinBirthdayBanner /> */}
 			</div>

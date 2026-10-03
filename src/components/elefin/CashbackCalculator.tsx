@@ -121,7 +121,7 @@ export function CashbackCalculator() {
               </span>
 
               <div className="flex flex-col gap-1">
-                <span className="font-serif text-[clamp(44px,6vw,64px)] font-extrabold leading-none tracking-tight tabular-nums">
+                <span className="font-serif text-4xl md:text-[clamp(44px,6vw,64px)]  font-extrabold leading-none tracking-tight tabular-nums">
                   ₹{formatInr(inr)}
                 </span>
                 <span className="text-lg font-medium text-background/80">
