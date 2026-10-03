@@ -26,17 +26,15 @@ export const elefinOffer = {
   stepsHeading: "Get back your cashback in 4 simple steps",
   wallet: {
     label: "Community Cashback Wallet",
-    sublabel: "Powered by Elefin",
     // Starting balance. The displayed total = base + a daily cap of 1,30,000
-    // spread evenly across each day since `anchorDate` (a new increment every 5s,
-    // ~₹7.5/slot), carried over day to day until `window.end`. Identical on every
-    // refresh and device. To reset visible value: move `anchorDate` forward; to
-    // raise the floor: increase `base`.
+    // spread evenly across each day since `anchorDate` (a new increment every
+    // 1.5 min, ~₹135/slot), carried over day to day until `window.end`. Identical
+    // on every refresh and device. To reset visible value: move `anchorDate`
+    // forward; to raise the floor: increase `base`.
     base: 165000,
     anchorDate: "2026-10-03",
     seed: 7421,
     caption: "Available cashback",
-    added: "+₹5740",
     addedLabel: "cashback added",
   },
   calculator: {

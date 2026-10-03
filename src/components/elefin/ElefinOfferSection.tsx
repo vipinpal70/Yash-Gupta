@@ -54,9 +54,7 @@ export function ElefinOfferSection() {
             endDate={elefinOffer.window.end}
             seed={elefinOffer.wallet.seed}
             label={elefinOffer.wallet.label}
-            sublabel={elefinOffer.wallet.sublabel}
             caption={elefinOffer.wallet.caption}
-            added={elefinOffer.wallet.added}
             addedLabel={elefinOffer.wallet.addedLabel}
           />
         </div>

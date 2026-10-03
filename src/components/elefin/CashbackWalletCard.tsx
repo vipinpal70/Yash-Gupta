@@ -10,21 +10,43 @@ type Props = {
   endDate: string;
   seed: number;
   label: string;
-  sublabel: string;
   caption: string;
-  added: string;
   addedLabel: string;
 };
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 // The 1,30,000 daily cap is spread evenly across the whole day so the counter
-// is always ticking — on any visit the value is visibly increasing. A new slot
-// lands every 5s (17,280 slots/day → avg ~₹7.5/slot), and the display re-reads
-// every 5s so the on-screen number updates within a few seconds.
-const SLOT_MS = 4_000; // 5s per deterministic increment
-const DISPLAY_MS = 4_000; // display re-reads every 5 seconds
-const SLOTS_PER_DAY = DAY_MS / SLOT_MS; // 17,280
+// keeps climbing day to day. A new slot lands every 1.5 min (960 slots/day →
+// avg ~₹135/slot), and the display re-reads on the same cadence so the
+// on-screen number steps up once every 1.5 minutes.
+const SLOT_MS = 90_000; // 1.5 min per deterministic increment
+const DISPLAY_MS = 90_000; // display re-reads every 1.5 min
+const SLOTS_PER_DAY = DAY_MS / SLOT_MS; // 960
 const DAILY_CAP = 1_30_000; // exact amount added per full day
+
+// The "cashback added" badge shows a fresh random amount that refreshes on a
+// fixed cadence, so the social proof feels live without touching the running
+// wallet total above (which is deterministic).
+const ADDED_MIN = 200;
+const ADDED_MAX = 900;
+const ADDED_REFRESH_MS = 60_000; // new random amount every 1 min
+
+// Random whole rupee amount in the inclusive [ADDED_MIN, ADDED_MAX] range.
+function randomAddedAmount() {
+  return Math.floor(ADDED_MIN + Math.random() * (ADDED_MAX - ADDED_MIN + 1));
+}
+
+// The "users earning their fees back" count starts at USERS_BASE and grows by
+// USERS_PER_DAY for every full 24h elapsed since the campaign anchor date, so
+// the social-proof number climbs by 500 a day without any manual edits.
+const USERS_BASE = 3500;
+const USERS_PER_DAY = 500; // +500 users every 24 hours
+
+function getUserCount(anchorDate: string) {
+  const anchor = new Date(anchorDate).getTime();
+  const daysElapsed = Math.max(0, Math.floor((Date.now() - anchor) / DAY_MS));
+  return USERS_BASE + daysElapsed * USERS_PER_DAY;
+}
 
 // Small deterministic PRNG (mulberry32). Given the same seed it always yields
 // the same sequence, so the per-slot increments are fixed forever.
@@ -44,7 +66,7 @@ function mulberry32(seed: number) {
 // increments are those weights normalised to sum to exactly DAILY_CAP, so the
 // total grows smoothly all day and lands precisely on 1,30,000 at midnight —
 // no jump when the day rolls over. Weights sit in [0.5, 1.5) so per-slot
-// increments vary (~₹3.8–11.3) and the counter never stalls or goes backwards.
+// increments vary (~₹68–203) and the counter never stalls or goes backwards.
 function dayAccrual(seed: number, day: number, slots: number) {
   if (slots <= 0) return 0;
   if (slots >= SLOTS_PER_DAY) return DAILY_CAP;
@@ -91,15 +113,34 @@ export function CashbackWalletCard({
   endDate,
   seed,
   label,
-  sublabel,
   caption,
-  added,
   addedLabel,
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const targetRef = useRef<number | null>(null);
   const [value, setValue] = useState(0);
+  const [addedAmount, setAddedAmount] = useState(randomAddedAmount);
+  const [userCount, setUserCount] = useState(() => getUserCount(anchorDate));
+
+  // The user count only changes on 24h boundaries, but recompute every minute
+  // so a long-open tab rolls over to the next +500 without a refresh.
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setUserCount(getUserCount(anchorDate));
+    }, 60_000);
+    return () => clearInterval(interval);
+  }, [anchorDate]);
+
+  // Refresh the "cashback added" badge with a new random amount between
+  // ₹200–₹300 every 10 seconds while the card is visible.
+  useEffect(() => {
+    if (!inView) return;
+    const interval = setInterval(() => {
+      setAddedAmount(randomAddedAmount());
+    }, ADDED_REFRESH_MS);
+    return () => clearInterval(interval);
+  }, [inView]);
 
   // Count up from 0 to the current deterministic total once the card enters view,
   // then re-read the deterministic total every 5 seconds so the display stays
@@ -181,7 +222,12 @@ export function CashbackWalletCard({
             <span className="font-sans text-lg font-bold leading-snug text-foreground">
               {label}
             </span>
-            <span className="text-[13px] font-light text-muted">{sublabel}</span>
+            <span className="text-[13px] font-light text-muted">
+              <span className="font-semibold text-emerald-light tabular-nums">
+                {userCount.toLocaleString("en-IN")}+
+              </span>{" "}
+              users are earning their fees back with us!
+            </span>
           </div>
         </div>
 
@@ -199,7 +245,9 @@ export function CashbackWalletCard({
             <Plus className="size-4" />
           </span>
           <span className="text-[15px] font-light text-muted">
-            <span className="font-semibold text-emerald-light">{added}</span>{" "}
+            <span className="font-semibold text-emerald-light tabular-nums">
+              +₹{addedAmount}
+            </span>{" "}
             {addedLabel}
           </span>
         </div>
